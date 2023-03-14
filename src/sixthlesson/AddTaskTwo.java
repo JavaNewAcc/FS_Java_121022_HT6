@@ -1,5 +1,6 @@
 package sixthlesson;
 
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class AddTaskTwo {
@@ -9,15 +10,40 @@ public class AddTaskTwo {
 
 		System.out.println("Введіть данні для пошуку повторів:");
 		String text = scan.nextLine();
-		char[] charArr = text.toCharArray();
-		int repeatLength = 0;
+		String tempText;
+		String word = "";
+		String tempWord = "";
 
-		for (int i = 1; i < charArr.length; i++) {
-			if (charArr[0] == charArr[i]) {
-				repeatLength = i;
-				break;
+		boolean repeat = false;
+
+		for (int i = 0; i < text.length() / 2; i++) {
+			word = text.substring(0, i + 1);
+			tempWord = text.substring(i + 1, word.length() * 2);
+			tempText = text.substring(0, text.length());
+			if (word.equals(tempWord)) {
+				String[] textArr = new String[text.length() / word.length()];
+				for (int j = 0; j < textArr.length; j++) {
+					textArr[j] = tempText.substring(0, word.length());
+					tempText = tempText.substring(word.length());
+				}
+				for (int k = 0; k < textArr.length; k++) {
+					if (textArr[0].equals(textArr[k])) {
+						repeat = true;
+					} else {
+						repeat = false;
+						break;
+					}
+				}
+				if (repeat) {
+					break;
+				} else {
+					continue;
+				}
+			}
+			if (!repeat) {
+				word = "без повторів";
 			}
 		}
-		System.out.println("Вовочка написав слово: " + text.substring(0, repeatLength));
+		System.out.println("Вовочка написав слово: " + word);
 	}
 }

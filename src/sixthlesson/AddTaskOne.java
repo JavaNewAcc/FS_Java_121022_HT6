@@ -52,7 +52,7 @@ public class AddTaskOne {
 			}
 		}
 		if (amountArr.length > 1) {
-			centsArr = new int[amountArr[1].length()];
+			centsArr = new int[2];
 			cents = Integer.valueOf(amountArr[1]);
 			for (int i = amountArr[1].length() - 1; i >= 0; i--) {
 				centsArr[i] = cents % 10;
